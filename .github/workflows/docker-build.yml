@@ -1,0 +1,19 @@
+name: Build Student Portal Docker Image
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Build Docker image
+        run: docker build -t student-portal:1.0 .
+
+      - name: Verify Docker image
+        run: docker image ls student-portal:1.0
